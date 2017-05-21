@@ -285,7 +285,7 @@ class _MaterialState(_BaseState):
                 try:
                     value = float(element)
                 except ValueError:
-                    print('Error: Could not convert element "{0}" to a float'.format(element))
+                    print(('Error: Could not convert element "{0}" to a float'.format(element)))
                     return line_elements
                 if self._mode in ['diffuseColor', 'specularColor', 'emissiveColor']:
                     if self._data[self._mode] is None:
@@ -323,7 +323,7 @@ class _ValueState(_BaseState):
                     else:
                         value = float(element)
                 except ValueError:
-                    print('Error: Could not convert element "{0}" to a float'.format(element))
+                    print(('Error: Could not convert element "{0}" to a float'.format(element)))
                     return line_elements
                 if triple_end:
                     self._mode.append(value)
@@ -354,7 +354,7 @@ class _CoordIndexState(_BaseState):
                     else:
                         value = int(element)
                 except ValueError:
-                    print('Error: Could not convert element "{0}" to a float'.format(element))
+                    print(('Error: Could not convert element "{0}" to a float'.format(element)))
                     return line_elements
 
                 self._data.append(value)
@@ -371,11 +371,11 @@ class _DummyState(_BaseState):
             element = line_elements.pop(0)
             if _isOpenScopeMarker(element):
                 dummy_count += 1
-                print('enter dummy', dummy_count, element)
+                print(('enter dummy', dummy_count, element))
                 self._active_state = _DummyState(self)
                 self._data = _getTypeForMarker(element)
             elif _isCloseScopeMarker(element):
-                print('exit dummy', dummy_count, element)
+                print(('exit dummy', dummy_count, element))
                 dummy_count  -= 1
 #                 line_elements = [element] + line_elements
                 self._active_state = self._parent
